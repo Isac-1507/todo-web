@@ -25,7 +25,7 @@ export function setData(uid, data) {
 export function addTodoToUser(uid, todo, completed) {
   const currentTime = getUnixEpochTime()
   const userTodosRef = ref(db, `users/${uid}/todos/${currentTime}`);
-  set(userTodosRef, todo, completed) // Set the data for the new todo
+  set(userTodosRef, todo, {'status': [completed]} ) // Set the data for the new todo
     .then(() => console.log('Todo added successfully'))
     .catch(error => console.error('Error adding todo:', error));
 }
