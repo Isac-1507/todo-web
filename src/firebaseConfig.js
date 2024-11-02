@@ -12,7 +12,8 @@ const firebaseConfig = {
   projectId: "todo-85050",
   storageBucket: "todo-85050.firebasestorage.app",
   messagingSenderId: "1063715075277",
-  appId: "1:1063715075277:web:94dd1d17a7426acbb3e584"
+  appId: "1:1063715075277:web:94dd1d17a7426acbb3e584",
+  databaseURL: "https://todo-85050-default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 // Initialize Firebase
@@ -29,3 +30,6 @@ export { db };
 
 // Export Auth
 export { auth };
+
+// Export App
+export { app }
