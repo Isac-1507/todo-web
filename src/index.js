@@ -1,7 +1,8 @@
 import './firebaseConfig.js'; // Initialize Firebase
 import { handleSignUp } from './signUpHandler.js';
 import { handleSignIn } from './signInHandler.js';
-import { pushData, setData } from './firebaseUtils.js';
+import { addTodoToUser, pushData, setData } from './firebaseUtils.js';
+import { getCurrentTime, getUnixEpochTime } from './getTime.js';
 
 let currentUID = null; // Define a global variable
 
@@ -23,11 +24,13 @@ signInForm.addEventListener('submit', async (e) => {
 
 todoInput.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
     console.log(currentUID)
-    const currentTime = Date().toString().split(' ')[0];
+    const currentTime = getUnixEpochTime();
+    console.log(currentTime);
     const todoValue = document.getElementById('todoInput').value;
-    const todoHeading = 'Todo' + currentTime
+    const todoHeading = 'Todo'
     console.log(todoValue);
-    setData(currentUID, {[todoHeading]: todoValue}, )
-    console.log(`Todo added for user ${currentUID}: ${todoHeading} - ${todoInput}`);
+    addTodoToUser(currentUID, {[todoHeading]: todoValue}, false);
+    console.log(`Todo added for user ${currentUID}: ${todoHeading} - ${todoValue}`);
 })
