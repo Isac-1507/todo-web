@@ -15,11 +15,11 @@
   <body>
     <h1>Todo</h1>
 
-    <form action="#">
+    <form action="#" id="sign-up-form">
       <h2>Sign Up</h2>
       <label for="email">Email:</label><br />
-      <input type="email" name="email" /><br />
-      <label for="password">Password:</label><br />
+      <input type="email" name="email"  /><br />
+      <label for="password" id="password">Password:</label><br />
       <input
         type="password"
         name="password"
@@ -27,7 +27,7 @@
       <input type="submit" value="Submit" />
     </form>
 
-    <form>
+    <form action="#" id="sign-in-form">
       <h2>Login</h2>
       <label for="email">Email:</label><br />
       <input type="email" name="email" /><br />
@@ -35,9 +35,17 @@
       <input
         type="password"
         name="password"
+        id="password"
       /><br />
       <input type="submit" value="Submit" />
     </form>
-    <script src="main.js"></script>
+
+    <form action="#" id="todoEventHandler">
+      <h3>Add todo</h3>
+      <label for="todo">Todo:</label><br />
+      <textarea name="todo" id="todoInput"></textarea><br />
+      <input type="submit" value="submit" />
+    </form>
+    <script src="bundle.js"></script>
   </body>
 </html>
