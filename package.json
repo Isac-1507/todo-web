@@ -14,7 +14,7 @@
   "bugs": {
     "url": "https://github.com/Isac-1507/todo-web/issues"
   },
-  "homepage": "https://github.com/Isac-1507/todo-web#readme",
+  "homepage": "https://github.com/Isac-1507/todo-web",
   "description": "",
   "dependencies": {
     "firebase": "^11.0.1"
