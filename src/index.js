@@ -10,6 +10,7 @@ const signUpForm = document.getElementById("sign-up-form");
 const signInForm = document.getElementById("sign-in-form");
 const todoInput = document.getElementById("todoEventHandler");
 const modal = document.getElementById("id01");
+const modalLogin = document.getElementById("id02");
 
 signUpForm.addEventListener("submit", async (e) => {
   currentUID = await handleSignUp(e);
@@ -30,6 +31,13 @@ window.onclick = function(event) {
   }
 };
 
+window.onclick = function(event) {
+  if (event.target == modalLogin) {
+    modalLogin.style.display = "none";
+  }
+};
+
+//...
 todoInput.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -44,4 +52,3 @@ todoInput.addEventListener("submit", async (e) => {
     `Todo added for user ${currentUID}: ${todoHeading} - ${todoValue}`,
   );
 });
-

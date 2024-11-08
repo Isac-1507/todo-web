@@ -18,7 +18,7 @@
 #sign-up-form,
 #sign-in-form {
   background-color: #fefefe;
-  margin: 5px auto;
+  margin: 5% auto 15% auto;
   border: 1px solid #888;
   width: 80%;
   padding: 5px;
@@ -42,6 +42,21 @@
 .close:focus {
   color: red;
   cursor: pointer;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
 }
 
 /* Add zoom Animation */
