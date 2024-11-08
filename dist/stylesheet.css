@@ -15,11 +15,16 @@
 
 /* Modal Content/Box */
 
-.modal-content {
+#sign-up-form,
+#sign-in-form {
   background-color: #fefefe;
   margin: 5px auto;
   border: 1px solid #888;
   width: 80%;
+  padding: 5px;
+  border-radius: 5px;
+  border-width: 5px;
+  border-color: black;
 }
 
 /* Close Button */
