@@ -1,113 +1,89 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Todo</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="Assets/favicons/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="Assets/favicons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="Assets/favicons/favicon-16x16.png"
-    />
-    <link rel="manifest" href="site.webmanifest" />
-  </head>
 
-  <body>
-    <h1>Todo</h1>
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="Assets/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="Assets/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="Assets/favicons/favicon-16x16.png" />
+  <link rel="manifest" href="site.webmanifest" />
+</head>
 
-    <!-- Button to open the modal login form -->
-    <button onclick="document.getElementById('id01').style.display='block'">
-      Sign Up
-    </button>
+<body>
+  <h1>Todo</h1>
 
-    <!-- The Modal -->
-    <div id="id01" class="modal">
-      <span
-        onclick="document.getElementById('id01').style.display='none'"
-        class="close"
-        title="Close Modal"
-        >&times;</span
-      >
-      <!-- Modal Content -->
-      <form action="#" id="sign-up-form">
-        <div class="container">
-          <h2>Sign Up</h2>
-          <label for="name">Name:</label><br />
-          <input type="text" name="name" /><br />
-          <label for="email">Email:</label><br />
-          <input type="email" name="email" /><br />
-          <label for="password">Password:</label><br />
-          <input type="password" name="password" /><br />
-          <input type="submit" value="Submit" />
-        </div>
-        <div class="container" style="background-color: #f1f1f1">
-          <button
-            type="button"
-            onclick="document.getElementById('id01').style.display='none'"
-            class="cancelbtn"
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
+  <!-- Button to open the modal login form -->
+  <button onclick="document.getElementById('id01').style.display='block'">
+    Sign Up
+  </button>
 
-    <button onclick="document.getElementById('id02').style.display='block'">
-      Log In
-    </button>
-    <!-- Sign In Modal -->
-    <div id="id02" class="modal">
-      <span
-        onclick="document.getElementById('id02').style.display='none'"
-        class="close"
-        title="Close Modal"
-        >&times;</span
-      >
-      <form action="#" id="sign-in-form">
-        <div class="container">
-          <h2>Login</h2>
-          <label for="email">Email:</label><br />
-          <input type="email" name="email" /><br />
-          <label for="password">Password:</label><br />
-          <input type="password" name="password" id="password" /><br />
-          <input type="submit" value="Submit" />
-        </div>
-        <div class="container" style="background-color: #f1f1f1">
-          <button
-            type="button"
-            onclick="document.getElementById('id02').style.display='none'"
-            class="cancelbtn"
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <hr style="color: white" />
-    <!-- Todo Form -->
-    <form action="#" id="todoEventHandler">
-      <h3>Add todo</h3>
-      <label for="todo">Todo:</label><br />
-      <textarea name="todo" id="todoInput"></textarea><br />
-      <input type="submit" value="Submit" />
+  <!-- The Modal -->
+  <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
+    <!-- Modal Content -->
+    <form action="#" id="sign-up-form">
+      <div class="container">
+        <h2>Sign Up</h2>
+        <label for="name">Name:</label><br />
+        <input type="text" name="name" /><br />
+        <label for="email">Email:</label><br />
+        <input type="email" name="email" /><br />
+        <label for="password">Password:</label><br />
+        <input type="password" name="password" /><br />
+        <input type="submit" value="Submit" />
+      </div>
+      <div class="container" style="background-color: #f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">
+          Cancel
+        </button>
+      </div>
     </form>
-    <hr style="color: white" />
-    <!-- JavaScript -->
-    <script src="bundle.js"></script>
-  </body>
+  </div>
+
+  <button onclick="document.getElementById('id02').style.display='block'">
+    Log In
+  </button>
+  <!-- Sign In Modal -->
+  <div id="id02" class="modal">
+    <span onclick="document.getElementById('id02').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
+    <form action="#" id="sign-in-form">
+      <div class="container">
+        <h2>Login</h2>
+        <label for="email">Email:</label><br />
+        <input type="email" name="email" /><br />
+        <label for="password">Password:</label><br />
+        <input type="password" name="password" id="password" /><br />
+        <input type="submit" value="Submit" />
+      </div>
+      <div class="container" style="background-color: #f1f1f1">
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <hr style="color: white" />
+  <!-- Todo Form -->
+  <form action="#" id="todoEventHandler">
+    <h3>Add todo</h3>
+    <label for="todo">Todo:</label><br />
+    <textarea name="todo" id="todoInput"></textarea><br />
+    <input type="submit" value="Submit" />
+  </form>
+  <hr style="color: white" />
+  <form id="todoForn">
+    <ul id="todo"></ul>
+    <button type="submit">Submit</button>
+  </form>
+  <!-- JavaScript -->
+  <script src="bundle.js"></script>
+</body>
+
 </html>

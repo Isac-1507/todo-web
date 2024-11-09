@@ -3,6 +3,9 @@ import { handleSignUp } from "./signUpHandler.js";
 import { handleSignIn } from "./signInHandler.js";
 import { addTodoToUser, pushData, setData } from "./firebaseUtils.js";
 import { getCurrentTime, getUnixEpochTime } from "./getTime.js";
+import { db } from "./firebaseConfig.js";
+import { ref, get, update } from "firebase/database";
+import { displayTodos } from "./pushTodosToHTML.js";
 
 let currentUID = null; // Define a global variable
 
@@ -38,9 +41,27 @@ window.onclick = function(event) {
 };
 
 //...
+function loadTodos() {
+  const todosRef = ref(db, `users/${currentUID}/todos`);
+  get(todosRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const todos = snapshot.val();
+        displayTodos(todos);
+      } else {
+        console.log("No todos available, try make some!");
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching todos:", error);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", loadTodos);
+
 todoInput.addEventListener("submit", async (e) => {
   e.preventDefault();
-
+if (currentUID != null) {
   console.log(currentUID);
   const currentTime = getUnixEpochTime();
   console.log(currentTime);
@@ -51,4 +72,18 @@ todoInput.addEventListener("submit", async (e) => {
   console.log(
     `Todo added for user ${currentUID}: ${todoHeading} - ${todoValue}`,
   );
+  loadTodos()
+} else {
+  console.warn("You are not logged in!")
+}
 });
+
+export function updateTodoStatus(key, isCompleted) {
+  const todoRef = ref(db, `users/${currentUID}/todos/${key}`);
+  update(todoRef, { completed: isCompleted }).then(() => {
+    console.log(`Todo ${key} updated to ${isCompleted ? 'completed' : 'not completed'}`);
+  }).catch((error) => {
+    console.error('Error updating todo:', error);
+  });
+}
+
