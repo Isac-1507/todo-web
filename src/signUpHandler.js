@@ -1,5 +1,5 @@
 import { auth } from './firebaseConfig.js';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { browserSessionPersistence, createUserWithEmailAndPassword, setPersistence } from 'firebase/auth';
 import { pushData, setData } from './firebaseUtils.js';
 
 const signUpForm = document.getElementById('sign-up-form');
@@ -11,6 +11,7 @@ export async function handleSignUp(e) {
   const password = signUpForm.password.value;
 
   try {
+    await setPersistence(auth, browserSessionPersistence)
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 

@@ -1,5 +1,5 @@
 import { auth } from './firebaseConfig.js';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { browserSessionPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth';
 
 const signInForm = document.getElementById('sign-in-form');
 
@@ -10,6 +10,7 @@ export async function handleSignIn(e) {
   const password = signInForm.password.value;
 
   try {
+    await setPersistence(auth, browserSessionPersistence);
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const userCred = userCredential.user;
     console.log('User signed in:', userCred);

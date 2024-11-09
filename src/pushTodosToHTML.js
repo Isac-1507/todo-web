@@ -1,6 +1,8 @@
 import { update } from "firebase/database";
 import { convertTimestamp } from "./getTime.js";
 import { updateTodoStatus } from "./index.js";
+import { db } from "./firebaseConfig.js";
+import { deleteTodoItem } from "./index.js";
 
 export function displayTodos(todos) {
   const entriesContainer = document.getElementById("todo");
@@ -21,7 +23,15 @@ export function displayTodos(todos) {
     checkbox.value = todo.Todo;
     checkbox.checked = todo.completed || false;
 
-    checkbox.addEventListener('change', () => {
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', (e) => {
+      e.preventDefault()
+      deleteTodoItem(key);
+      entriesContainer.innerHTML = "";
+    })
+    checkbox.addEventListener('change', (e) => {
+      e.preventDefault()
       updateTodoStatus(key, checkbox.checked)
     })
 
@@ -31,7 +41,9 @@ export function displayTodos(todos) {
 
     li.appendChild(checkbox);
     li.appendChild(label);
+    li.appendChild(deleteButton)
     entriesContainer.appendChild(li);
   }
 }
+
 

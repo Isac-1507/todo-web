@@ -3,9 +3,11 @@ import { handleSignUp } from "./signUpHandler.js";
 import { handleSignIn } from "./signInHandler.js";
 import { addTodoToUser, pushData, setData } from "./firebaseUtils.js";
 import { getCurrentTime, getUnixEpochTime } from "./getTime.js";
-import { db } from "./firebaseConfig.js";
-import { ref, get, update } from "firebase/database";
+import { db, auth } from "./firebaseConfig.js";
+import { ref, get, update, remove } from "firebase/database";
 import { displayTodos } from "./pushTodosToHTML.js";
+import { browserSessionPersistence, setPersistence } from "firebase/auth";
+import './pushTodosToHTML.js'
 
 let currentUID = null; // Define a global variable
 
@@ -14,16 +16,21 @@ const signInForm = document.getElementById("sign-in-form");
 const todoInput = document.getElementById("todoEventHandler");
 const modal = document.getElementById("id01");
 const modalLogin = document.getElementById("id02");
+const refreshButton = document.getElementById("refresh");
 
 signUpForm.addEventListener("submit", async (e) => {
   currentUID = await handleSignUp(e);
   console.log("Sign-Up UID:", currentUID);
+  modal.style.display = "none"
+  loadTodos()
   // Now you can use currentUID to push additional data if needed
 });
 
 signInForm.addEventListener("submit", async (e) => {
   currentUID = await handleSignIn(e);
   console.log("Sign-In UID:", currentUID);
+  modalLogin.style.display = "none";
+  loadTodos()
   // Now you can use currentUID to push additional data if needed
 });
 
@@ -87,3 +94,21 @@ export function updateTodoStatus(key, isCompleted) {
   });
 }
 
+setPersistence(auth, browserSessionPersistence).catch((error) => {
+  console.error("Error saving login:", error)
+});
+document.addEventListener('DOMContentLoaded', loadTodos, handleSignIn);
+
+export function deleteTodoItem(key) {
+  const todoRef = ref(db, `users/${currentUID}/todos/${key}`);
+  remove(todoRef).then(() => {
+    console.log(`Todo ${key} deleted successfully`);
+    loadTodos()
+  }).catch((error) => {
+    console.error('Error deleting todo:', error)
+  });
+}
+refreshButton.addEventListener('click' ,(e) => {
+  e.preventDefault()
+  loadTodos()
+})
